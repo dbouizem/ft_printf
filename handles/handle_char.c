@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 02:51:52 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/08 17:23:34 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:37:02 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,55 @@ static char	*get_char_str(char c)
 	return (str);
 }
 
+static void	print_null_char(t_printf *data)
+{
+	int	pad;
+	int	i;
+
+	pad = data->width - 1;
+	if (pad < 0)
+		pad = 0;
+	if (!data->minus)
+	{
+		i = 0;
+		while (i++ < pad)
+			ft_print_char(' ', data);
+		ft_print_char('\0', data);
+	}
+	else
+	{
+		ft_print_char('\0', data);
+		i = 0;
+		while (i++ < pad)
+			ft_print_char(' ', data);
+	}
+}
+
 void	handle_char(t_printf *data)
 {
 	char		c;
 	char		*str;
-	wint_t		wc;
+	wchar_t		wc;
 
 	if (data->length == LENGTH_L)
 	{
-		wc = va_arg(data->args, wint_t);
-		str = wint_to_str(wc);
+		wc = va_arg(data->args, wchar_t);
+		str = get_wchar_utf8_str(wc, data);
 	}
 	else
 	{
 		c = (char)va_arg(data->args, int);
+		if (c == '\0')
+		{
+			print_null_char(data);
+			return ;
+		}
 		str = get_char_str(c);
 	}
 	if (!str)
-	{
-		data->error = 1;
 		return ;
-	}
-	apply_width(&str, data);
-	if (data->error)
-		return (free(str));
+	if (!data->error)
+		apply_width(&str, data, 1);
 	ft_print_str(str, data);
 	free(str);
 }

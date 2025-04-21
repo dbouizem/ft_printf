@@ -6,26 +6,38 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:37:04 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/02/14 15:36:26 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/04/13 23:21:49 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf.h"
 
 void	apply_precision_int(char **str, t_printf *data)
 {
-	int		len_str;
-	int		len_n;
+	char	*num_part;
 	char	*zeros;
+	char	*tmp;
+	char	*old_str;
+	int		sign;
 
-	len_str = ft_strlen(*str);
-	len_n = data->precision - len_str;
-	if (len_n > 0)
+	sign = (**str == '-');
+	num_part = *str + sign;
+	if (data->precision < 0 || !str || !*str
+		|| data->precision <= (int)ft_strlen(num_part))
+		return ;
+	old_str = *str;
+	zeros = ft_strfill(data->precision - ft_strlen(num_part), '0');
+	if (sign)
 	{
-		zeros = ft_strfill(len_n, '0');
-		new = ft_strjoin(zeros, *str);
-		free(*str);
-		free(zeros);
-		*str = new;
+		tmp = ft_strjoin("-", zeros);
+		*str = ft_strjoin(tmp, num_part);
+		free(tmp);
 	}
+	else
+		*str = ft_strjoin(zeros, num_part);
+	free(zeros);
+	free(old_str);
+	if (!*str)
+		data->error = 1;
 }

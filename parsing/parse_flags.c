@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_print.c                                    :+:      :+:    :+:   */
+/*   parse_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 22:30:52 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/02/10 22:46:56 by dbouizem         ###   ########.fr       */
+/*   Created: 2025/04/09 17:09:07 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/04/10 17:59:01 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_atoi_print(char **str)
+void	parse_flags(const char **format, t_printf *data)
 {
-	int	res;
-
-	res = 0;
-	while (ft_isdigit(**str))
+	if (data->error || !format || !*format)
+		return ;
+	while (ft_strchr("-0# +", **format))
 	{
-		res = res * 10 + (**str - '0');
-		(*str)++;
+		if (**format == '-')
+			data->minus = 1;
+		else if (**format == '0')
+			data->zero = 1;
+		else if (**format == '#')
+			data->hash = 1;
+		else if (**format == ' ')
+			data->space = 1;
+		else if (**format == '+')
+			data->plus = 1;
+		(*format)++;
 	}
-	return (res);
 }

@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utoa.c                                          :+:      :+:    :+:   */
+/*   parse_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 10:06:43 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/03/01 10:35:46 by dbouizem         ###   ########.fr       */
+/*   Created: 2025/04/09 17:11:18 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/04/12 20:24:44 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-char	ft_utoa(unsigned int n)
+void	parse_format(const char **format, t_printf *data)
 {
-	char	buffer[12];
-	int		i;
-	char	*base;
-
-	base = DIGITS;
-	i = sizeof(buffer) - 1;
-	buffer[i] = '\0';
-	if (n == 0)
-		buffer[--i] = '0';
-	else
+	parse_flags(format, data);
+	parse_width_precision(format, data);
+	parse_length(format, data);
+	if (ft_strchr("cspdiuxX%", **format))
 	{
-		while (n > 0)
-		{
-			buffer[--i] = base[n % 10];
-			n /= 10;
-		}
+		handle_dispatch_format(**format, data);
+		(*format)++;
 	}
-	return (ft_strdup(buffer + i));
+	else
+		handle_invalid_specifier(format, data);
+	handle_reset_printf_data(data);
 }

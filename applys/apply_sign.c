@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 06:23:01 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/02/16 02:13:43 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:42:56 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,18 @@ void	apply_sign(char **str, t_printf *data, int num)
 	sign = NULL;
 	if (num < 0)
 		sign = "-";
-	else if (data->plus)
+	if (data->plus)
 		sign = "+";
 	else if (data->space)
 		sign = " ";
 	else
 		return ;
 	new = ft_strjoin(sign, *str);
+	if (!new)
+	{
+		data->error = 1;
+		return ;
+	}
 	free(*str);
 	*str = new;
 }

@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_int.c                                       :+:      :+:    :+:   */
+/*   get_wc_utf8.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/06 05:19:12 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/02/14 01:59:42 by dbouizem         ###   ########.fr       */
+/*   Created: 2025/04/09 21:55:38 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/04/13 02:00:06 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-void	handle_int(t_printf *data)
+// max 4 octets UTF-8 + \0
+char	*get_wchar_utf8_str(wchar_t wc, t_printf *data)
 {
-	int		n;
-	char	*num_str;
-	char	*final_str;
+	size_t		len;
+	char		*str;
+	char		buffer[5];
 
-	n = va_arg(data->arg, int);
-	apply_flags(n, data->minus, data->plus, data->space);
-	num_str = ft_itoa(n);
-	if (!num_str)
+	len = ft_wcrtomb(buffer, wc);
+	if (len == (size_t)-1)
 	{
 		data->error = 1;
-		return ;
+		return (NULL);
 	}
-	apply_presion_int(num, data->precision);
-	final_str = apply_width(num, data->width, data->minus, data->zero);
-	if (!final_str)
+	str = ft_calloc(len + 1, sizeof(char));
+	if (!str)
 	{
 		data->error = 1;
-		free(num_str);
-		return ;
+		return (NULL);
 	}
-	ft_print_str(final_str, data);
-	free(final_str);
+	ft_memcpy(str, buffer, len);
+	str[len] = '\0';
+	return (str);
 }

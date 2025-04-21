@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 04:03:41 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/03/02 09:27:52 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/04/14 02:07:11 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static char	*get_hexptr_str(t_printf *data)
 	char			*p_str;
 	uintptr_t		ptr;
 
-	ptr = va_arg(data->args, void *);
-	if (ptr == 0 && data->precision == 0)
-		retunr (ft_strdup(""));
+	ptr = (uintptr_t)va_arg(data->args, void *);
+	if (ptr == 0)
+		return (ft_strdup("(nil)"));
 	p_str = ft_ulltoa_base(ptr, HEXLOW);
 	if (!p_str)
 		data->error = 1;
@@ -44,20 +44,21 @@ static void	add_ptr_prefix(char **str, t_printf *data)
 
 void	handle_pointer(t_printf *data)
 {
-	char			*str;
-	unsigned int	ptr;
+	char	*str;
 
 	str = get_hexptr_str(data);
 	if (data->error)
 		return (free(str));
-	apply_precision(&str, data);
-	if (data->error)
-		return (free(str));
-	add_ptr_prefix(&str, data);
-	ptr = ft_atol(str);
-	if (data->error)
-		return (free(str));
-	apply_width(&str, data);
+	if (ft_strncmp(str, "(nil)", ft_strlen("(nil)")) != 0)
+	{
+		apply_precision(&str, data);
+		if (data->error)
+			return (free(str));
+		add_ptr_prefix(&str, data);
+		if (data->error)
+			return (free(str));
+	}
+	apply_width(&str, data, ft_strlen(str));
 	if (data->error)
 		return (free(str));
 	ft_print_str(str, data);
