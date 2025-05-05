@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_unsigned_value.c                               :+:      :+:    :+:   */
+/*   get_unsigned_value_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 22:00:13 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/09 22:00:16 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/05 10:35:49 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 uintmax_t	get_unsigned_value(t_printf *data)
 {
@@ -27,7 +28,7 @@ uintmax_t	get_unsigned_value(t_printf *data)
 	else if (data->length == LENGTH_Z)
 		return (va_arg(data->args, size_t));
 	else if (data->length == LENGTH_T)
-		return (va_arg(data->args, unsigned long));
+		return ((uintmax_t)va_arg(data->args, ptrdiff_t));
 	else
 		return (va_arg(data->args, unsigned int));
 }

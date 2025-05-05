@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_length.c                                     :+:      :+:    :+:   */
+/*   parse_length_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 23:23:22 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/12 19:29:35 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/02 02:52:34 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 static void	handle_two_char_length(const char **format, t_printf *data)
 {

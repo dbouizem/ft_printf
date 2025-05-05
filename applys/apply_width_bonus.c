@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_width.c                                      :+:      :+:    :+:   */
+/*   apply_width_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 00:09:11 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/14 02:08:35 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/05 19:23:24 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 static void	extract_sign(char **str, char **sign, int *padding, t_printf *data)
 {

@@ -6,11 +6,14 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 04:03:41 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/14 02:07:11 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/04 02:44:00 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#ifdef BONUS
+# include "../ft_printf_bonus.h"
+#endif
 
 static char	*get_hexptr_str(t_printf *data)
 {
@@ -42,27 +45,46 @@ static void	add_ptr_prefix(char **str, t_printf *data)
 	*str = new;
 }
 
+#ifdef BONUS
+
 void	handle_pointer(t_printf *data)
 {
 	char	*str;
 
 	str = get_hexptr_str(data);
-	if (data->error)
-		return (free(str));
-	if (ft_strncmp(str, "(nil)", ft_strlen("(nil)")) != 0)
+	if (!data->error)
 	{
-		apply_precision(&str, data);
-		if (data->error)
-			return (free(str));
-		add_ptr_prefix(&str, data);
-		if (data->error)
-			return (free(str));
+		if (ft_strncmp(str, "(nil)", ft_strlen("(nil)")) != 0)
+		{
+			apply_precision(&str, data);
+			if (!data->error)
+				add_ptr_prefix(&str, data);
+		}
+		if (!data->error)
+			apply_width(&str, data, ft_strlen(str));
+		if (!data->error)
+			ft_print_str(str, data);
 	}
-	apply_width(&str, data, ft_strlen(str));
-	if (data->error)
-		return (free(str));
-	ft_print_str(str, data);
-	if (data->error)
-		return (free(str));
 	free(str);
 }
+
+#else
+
+void	handle_pointer(t_printf *data)
+{
+	char	*str;
+
+	str = get_hexptr_str(data);
+	if (data->error || !str)
+	{
+		free(str);
+		return ;
+	}
+	if (ft_strncmp(str, "(nil)", ft_strlen("(nil)")) != 0)
+		add_ptr_prefix(&str, data);
+	if (!data->error)
+		ft_print_str(str, data);
+	free(str);
+}
+
+#endif

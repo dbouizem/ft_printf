@@ -6,13 +6,14 @@
 #    By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 17:17:29 by dbouizem          #+#    #+#              #
-#    Updated: 2025/04/21 19:53:58 by dbouizem         ###   ########.fr        #
+#    Updated: 2025/05/05 15:00:11 by dbouizem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+##-I. -Iinclude -Ilibft
 
 LIBFT_PATH = libft
 LIBFT_LIB = $(LIBFT_PATH)/libft.a
@@ -20,13 +21,6 @@ LIBFT_LIB = $(LIBFT_PATH)/libft.a
 SRCS = \
 	ft_printf.c \
 	parsing/parse_format.c \
-	parsing/parse_flags.c \
-	parsing/parse_width_precision.c \
-	parsing/parse_length.c \
-	get_value/get_signed_value.c \
-	get_value/get_unsigned_value.c \
-	get_value/get_wc_utf8.c \
-	get_value/get_wstr_utf8.c \
 	handles/handle_char.c \
 	handles/handle_string.c \
 	handles/handle_pointer.c \
@@ -35,27 +29,36 @@ SRCS = \
 	handles/handle_uint.c \
 	handles/handle_dispatch_format.c \
 	handles/handle_invalid_specifier.c \
-	handles/handle_reset_data.c \
-	applys/apply_width.c \
-	applys/apply_precision.c \
-	applys/apply_precision_int.c \
-	applys/apply_sign.c \
-	applys/apply_hash.c \
 	utils/ft_print_char.c \
 	utils/ft_print_str.c \
 	utils/ft_print_hex.c \
-	utils/ft_strfill.c \
-	utils/ft_ulltoa_base.c \
-	utils/ft_wcrtomb.c \
 	utils/ft_itoa_print.c \
+	utils/ft_ulltoa_base.c \
 
 OBJS = $(SRCS:.c=.o)
 
+BONUS_SRCS = \
+	parsing/parse_flags_bonus.c \
+	parsing/parse_width_precision_bonus.c \
+	parsing/parse_length_bonus.c \
+	handles/handle_reset_data_bonus.c \
+	get_value/get_signed_value_bonus.c \
+	get_value/get_unsigned_value_bonus.c \
+	get_value/get_wc_utf8_bonus.c \
+	get_value/get_wstr_utf8_bonus.c \
+	applys/apply_width_bonus.c \
+	applys/apply_precision_bonus.c \
+	applys/apply_precision_int_bonus.c \
+	applys/apply_sign_bonus.c \
+	applys/apply_hash_bonus.c \
+	utils/ft_strfill_bonus.c \
+	utils/ft_wcrtomb_bonus.c \
+
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+
 all: $(NAME)
 
-bonus: all
-
-##build_m: all
+#build_m: all
 ##build_b: bonus
 
 $(LIBFT_LIB):
@@ -66,11 +69,17 @@ $(NAME): $(LIBFT_LIB) $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
+bonus: CFLAGS += -DBONUS
+bonus: all $(BONUS_OBJS)
+	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+	@ranlib $(NAME)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -I. -I$(LIBFT_PATH) -c $< -o $@
-
+##$(CC) $(CFLAGS) -c $< -o $@
+## Dans ce cas on mis directement les include "ft_printf.h" sans ../
 clean:
-	@rm -f $(OBJS)
+	@rm -f $(OBJS) $(BONUS_OBJS)
 	@$(MAKE) -C $(LIBFT_PATH) clean
 
 fclean: clean
@@ -80,3 +89,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all bonus build_b build_m clean fclean re
+

@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_reset_data.c                                :+:      :+:    :+:   */
+/*   apply_sign_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 00:22:28 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/12 20:25:12 by dbouizem         ###   ########.fr       */
+/*   Created: 2025/02/13 06:23:01 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/05 14:17:16 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
-void	handle_reset_printf_data(t_printf *data)
+void	apply_sign(char **str, t_printf *data, int num)
 {
-	data->minus = 0;
-	data->zero = 0;
-	data->hash = 0;
-	data->space = 0;
-	data->plus = 0;
-	data->width = 0;
-	data->precision = -1;
-	data->length = 0;
+	char	*sign;
+	char	*new;
+
+	sign = NULL;
+	if (num < 0)
+		sign = "-";
+	else if (data->plus)
+		sign = "+";
+	else if (data->space)
+		sign = " ";
+	else
+		return ;
+	new = ft_strjoin(sign, *str);
+	if (!new)
+	{
+		data->error = 1;
+		return ;
+	}
+	free(*str);
+	*str = new;
 }

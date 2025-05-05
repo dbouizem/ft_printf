@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wcrtomb.c                                       :+:      :+:    :+:   */
+/*   ft_wcrtomb_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 18:04:10 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/11 02:58:23 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/02 02:53:17 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 /* unicode to UTF-8 dans buffer s
 -- returrn nombre d'octets ecrit dans s

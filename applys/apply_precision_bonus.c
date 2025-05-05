@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_hash.c                                       :+:      :+:    :+:   */
+/*   apply_precision_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 03:51:10 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/12 19:47:03 by dbouizem         ###   ########.fr       */
+/*   Created: 2025/02/13 03:28:44 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/05 04:19:21 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
-void	apply_hash(char **str, t_printf *data, int uppercase)
+void	apply_precision(char **str, t_printf *data)
 {
-	char	*prefixe;
-	char	*result;
+	char	*new_str;
+	size_t	precision;
+	size_t	str_len;
 
-	if (!str || !*str || !data->hash || (**str == '0' && **str != '\0'))
+	if (!str || !*str || data->precision < 0)
 		return ;
-	prefixe = "0x";
-	if (uppercase)
-		prefixe = "0X";
-	result = ft_strjoin(prefixe, *str);
-	if (!result)
+	precision = (size_t)data->precision;
+	if (!*str)
 	{
-		data->error = 1;
+		new_str = ft_strdup("");
+		if (*str)
+			free(*str);
+		*str = new_str;
 		return ;
 	}
-	free(*str);
-	*str = result;
+	str_len = ft_strlen(*str);
+	if (str_len > precision)
+	{
+		new_str = ft_substr(*str, 0, precision);
+		free(*str);
+		*str = new_str;
+	}
 }

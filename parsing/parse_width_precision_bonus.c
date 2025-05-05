@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_width_precision.c                            :+:      :+:    :+:   */
+/*   parse_width_precision_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:09:55 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/12 19:49:55 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/05 20:57:42 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 static void	parse_width(const char **format, t_printf *data)
 {

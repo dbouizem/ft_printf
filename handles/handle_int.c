@@ -6,11 +6,33 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 12:29:12 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/13 04:00:14 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/05 20:30:17 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#ifdef BONUS
+# include "../ft_printf_bonus.h"
+
+static char	*create_initial_string(t_printf *data, intmax_t num)
+{
+	char		*str;
+	uintmax_t	un;
+
+	if (num == 0 && data->precision == 0)
+		str = ft_strdup("");
+	else
+	{
+		if (num < 0)
+			un = (uintmax_t)(-num);
+		else
+			un = (uintmax_t)num;
+		str = ft_itoa_print(un);
+	}
+	if (!str)
+		data->error = 1;
+	return (str);
+}
 
 void	handle_int(t_printf *data)
 {
@@ -20,13 +42,10 @@ void	handle_int(t_printf *data)
 	num = get_signed_value(data);
 	if (data->error)
 		return ;
-	if (num == 0 && data->precision == 0)
-		str = ft_strdup("");
-	else
-		str = ft_itoa_print(num);
-	if (!str)
+	str = create_initial_string(data, num);
+	if (data->error)
 	{
-		data->error = 1;
+		free(str);
 		return ;
 	}
 	apply_precision_int(&str, data);
@@ -38,3 +57,21 @@ void	handle_int(t_printf *data)
 		ft_print_str(str, data);
 	free(str);
 }
+
+#else
+
+void	handle_int(t_printf *data)
+{
+	char		*str;
+
+	str = ft_itoa_print((intmax_t)va_arg(data->args, int));
+	if (!str)
+	{
+		data->error = 1;
+		return ;
+	}
+	if (!data->error)
+		ft_print_str(str, data);
+}
+
+#endif

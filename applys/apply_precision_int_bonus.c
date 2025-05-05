@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_precision_int.c                              :+:      :+:    :+:   */
+/*   apply_precision_int_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:37:04 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/13 23:21:49 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/02 02:50:27 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 void	apply_precision_int(char **str, t_printf *data)
 {

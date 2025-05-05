@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_wstr_utf8.c                                    :+:      :+:    :+:   */
+/*   get_wstr_utf8_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:57:12 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/12 01:04:03 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/02 02:51:20 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 char	*get_wstr_utf8_str(wchar_t *wstr, t_printf *data)
 {

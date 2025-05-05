@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strfill.c                                       :+:      :+:    :+:   */
+/*   get_wc_utf8_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/14 15:04:17 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/02/14 15:42:39 by dbouizem         ###   ########.fr       */
+/*   Created: 2025/04/09 21:55:38 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/02 02:51:14 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
-char	*ft_strfill(size_t size, char c)
+// max 4 octets UTF-8 + \0
+char	*get_wchar_utf8_str(wchar_t wc, t_printf *data)
 {
-	char	*buffer;
+	size_t		len;
+	char		*str;
+	char		buffer[5];
 
-	buffer = malloc((size + 1) * sizeof(char));
-	if (!buffer)
+	len = ft_wcrtomb(buffer, wc);
+	if (len == (size_t)-1)
+	{
+		data->error = 1;
 		return (NULL);
-	ft_memset(buffer, c, size);
-	buffer[size] = '\0';
-	return (buffer);
+	}
+	str = ft_calloc(len + 1, sizeof(char));
+	if (!str)
+	{
+		data->error = 1;
+		return (NULL);
+	}
+	ft_memcpy(str, buffer, len);
+	str[len] = '\0';
+	return (str);
 }

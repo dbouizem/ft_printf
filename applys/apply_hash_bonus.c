@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_sign.c                                       :+:      :+:    :+:   */
+/*   apply_hash_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 06:23:01 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/12 00:42:56 by dbouizem         ###   ########.fr       */
+/*   Created: 2025/02/16 03:51:10 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/02 02:50:04 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
-void	apply_sign(char **str, t_printf *data, int num)
+void	apply_hash(char **str, t_printf *data, int uppercase)
 {
-	char	*sign;
-	char	*new;
+	char	*prefixe;
+	char	*result;
 
-	sign = NULL;
-	if (num < 0)
-		sign = "-";
-	if (data->plus)
-		sign = "+";
-	else if (data->space)
-		sign = " ";
-	else
+	if (!str || !*str || !data->hash || (**str == '0' && **str != '\0'))
 		return ;
-	new = ft_strjoin(sign, *str);
-	if (!new)
+	prefixe = "0x";
+	if (uppercase)
+		prefixe = "0X";
+	result = ft_strjoin(prefixe, *str);
+	if (!result)
 	{
 		data->error = 1;
 		return ;
 	}
 	free(*str);
-	*str = new;
+	*str = result;
 }

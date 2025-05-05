@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_signed_value.c                                 :+:      :+:    :+:   */
+/*   get_signed_value_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:59:02 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/04/09 21:59:21 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/05 14:11:37 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include "../ft_printf_bonus.h"
 
 intmax_t	get_signed_value(t_printf *data)
 {
@@ -25,7 +26,7 @@ intmax_t	get_signed_value(t_printf *data)
 	else if (data->length == LENGTH_J)
 		return (va_arg(data->args, intmax_t));
 	else if (data->length == LENGTH_Z)
-		return (va_arg(data->args, ssize_t));
+		return ((intmax_t)va_arg(data->args, size_t));
 	else if (data->length == LENGTH_T)
 		return (va_arg(data->args, ptrdiff_t));
 	else
