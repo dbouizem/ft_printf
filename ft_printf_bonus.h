@@ -6,13 +6,14 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 02:21:43 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/12 23:27:34 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/13 03:29:49 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_BONUS_H
 # define FT_PRINTF_BONUS_H
 
+#define BONUS
 # include "ft_printf.h"
 
 // Zone interdite (surrogates UTF-16)

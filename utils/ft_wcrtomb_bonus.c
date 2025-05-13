@@ -6,16 +6,12 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 18:04:10 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/02 02:53:17 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/13 03:35:52 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 #include "../ft_printf_bonus.h"
-
-/* unicode to UTF-8 dans buffer s
--- returrn nombre d'octets ecrit dans s
--- return size_t - 1 si error */
 
 size_t	ft_wcrtomb(char *s, wchar_t wc)
 {

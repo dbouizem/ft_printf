@@ -6,10 +6,11 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:57:12 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/02 02:51:20 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/13 03:32:18 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define BONUS
 #include "../ft_printf.h"
 #include "../ft_printf_bonus.h"
 
