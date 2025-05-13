@@ -43,7 +43,7 @@ ft\_printf reproduit le comportement de `printf`, en gérant :
 1. Cloner ce dépôt :
 
    ```bash
-   git clone https://github.com/<votre-utilisateur>/ft_printf.git
+   git clone https://github.com/dbouizem/ft_printf.git
    cd ft_printf
    ```
 
