@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 06:24:09 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/05 10:17:07 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/09 20:49:52 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	handle_uint(t_printf *data)
 		return ;
 	}
 	ft_print_str(str, data);
+	free(str);
 }
 
 #endif

@@ -6,14 +6,13 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 04:03:41 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/04 02:44:00 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/09 20:24:11 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 #ifdef BONUS
 # include "../ft_printf_bonus.h"
-#endif
 
 static char	*get_hexptr_str(t_printf *data)
 {
@@ -45,8 +44,6 @@ static void	add_ptr_prefix(char **str, t_printf *data)
 	*str = new;
 }
 
-#ifdef BONUS
-
 void	handle_pointer(t_printf *data)
 {
 	char	*str;
@@ -72,19 +69,16 @@ void	handle_pointer(t_printf *data)
 
 void	handle_pointer(t_printf *data)
 {
-	char	*str;
+	uintptr_t	ptr;
 
-	str = get_hexptr_str(data);
-	if (data->error || !str)
+	ptr = (uintptr_t)va_arg(data->args, void *);
+	if (ptr == 0)
 	{
-		free(str);
+		ft_print_str("(nill)", data);
 		return ;
 	}
-	if (ft_strncmp(str, "(nil)", ft_strlen("(nil)")) != 0)
-		add_ptr_prefix(&str, data);
-	if (!data->error)
-		ft_print_str(str, data);
-	free(str);
+	ft_print_str("0x", data);
+	ft_print_hex(ptr, 0, data);
 }
 
 #endif

@@ -6,14 +6,14 @@
 #    By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 17:17:29 by dbouizem          #+#    #+#              #
-#    Updated: 2025/05/05 15:00:11 by dbouizem         ###   ########.fr        #
+#    Updated: 2025/05/13 02:23:37 by dbouizem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
+##TEST = program
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-##-I. -Iinclude -Ilibft
 
 LIBFT_PATH = libft
 LIBFT_LIB = $(LIBFT_PATH)/libft.a
@@ -56,10 +56,11 @@ BONUS_SRCS = \
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
-all: $(NAME)
+##TEST_SRC = main.c
 
-#build_m: all
-##build_b: bonus
+##TEST_OBJ = $(TEST_SRC:.c=.o)
+
+all: $(NAME)
 
 $(LIBFT_LIB):
 	@$(MAKE) -C $(LIBFT_PATH)
@@ -74,10 +75,12 @@ bonus: all $(BONUS_OBJS)
 	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 	@ranlib $(NAME)
 
+##$(TEST) : $(TEST_OBJ) $(NAME)
+##$(CC) $(CFLAGS) $(TEST_OBJ) -L. -lftprintf -o $(TEST)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -I. -I$(LIBFT_PATH) -c $< -o $@
-##$(CC) $(CFLAGS) -c $< -o $@
-## Dans ce cas on mis directement les include "ft_printf.h" sans ../
+
 clean:
 	@rm -f $(OBJS) $(BONUS_OBJS)
 	@$(MAKE) -C $(LIBFT_PATH) clean
@@ -88,5 +91,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus build_b build_m clean fclean re
+.PHONY: all bonus clean fclean re
 

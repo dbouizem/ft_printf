@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 12:29:12 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/05 20:30:17 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/12 22:59:40 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifdef BONUS
 # include "../ft_printf_bonus.h"
 
-static char	*create_initial_string(t_printf *data, intmax_t num)
+static char	*get_signedint_str(t_printf *data, intmax_t num)
 {
 	char		*str;
 	uintmax_t	un;
@@ -42,7 +42,7 @@ void	handle_int(t_printf *data)
 	num = get_signed_value(data);
 	if (data->error)
 		return ;
-	str = create_initial_string(data, num);
+	str = get_signedint_str(data, num);
 	if (data->error)
 	{
 		free(str);
@@ -70,8 +70,8 @@ void	handle_int(t_printf *data)
 		data->error = 1;
 		return ;
 	}
-	if (!data->error)
-		ft_print_str(str, data);
+	ft_print_str(str, data);
+	free(str);
 }
 
 #endif

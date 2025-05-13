@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 23:23:22 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/02 02:52:34 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/11 18:13:39 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,27 @@ static void	handle_one_char_length(const char **format, t_printf *data)
 	if (**format == 'h')
 	{
 		data->length = LENGTH_H;
-		(*format) += 1;
+		(*format)++;
 	}
 	else if (**format == 'l')
 	{
 		data->length = LENGTH_L;
-		(*format) += 1;
+		(*format)++;
 	}
 	else if (**format == 'j')
 	{
 		data->length = LENGTH_J;
-		(*format) += 1;
+		(*format)++;
 	}
 	else if (**format == 'z')
 	{
 		data->length = LENGTH_Z;
-		(*format) += 1;
+		(*format)++;
 	}
 	else if (**format == 't')
 	{
 		data->length = LENGTH_T;
-		(*format) += 1;
+		(*format)++;
 	}
 }
 

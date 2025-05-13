@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 17:09:55 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/05 20:57:42 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/12 23:32:22 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	parse_precision(const char **format, t_printf *data)
 		if (**format == '*')
 		{
 			data->precision = va_arg(data->args, int);
-			(*format)++;
 			if (data->precision < 0)
 				data->precision = -1;
+			(*format)++;
 		}
 		else if (ft_isdigit(**format))
 		{
@@ -76,15 +76,16 @@ Problème:
 Première conversion (%5d) :
 data->width devient 5.
 Deuxième conversion (%d) :
-Si tu ne réinitialises pas data->width, il reste à 5 → bug !
+Si tu ne réinitialises pas data->width, il reste à 5 -> bug !
 => data->whith = 0 ----------> SOLVED
 
 --ft_printf("%.3d %.2f", 5, 3.1415);
-
---data->precision = 0;
+-- réinitialises data->precision = 0;
 ex: %.42d :
 On commence à 0, puis on accumule les chiffres.
 .42 → 0 * 10 + 4 = 4 → 4 * 10 + 2 = 42
+data->precision = -1 avant tout indique “pas de précision”
 ex: %.d :
-printf considère que . seul équivaut à une précision de 0
+printf considère que . seul équivaut à une précision de 0 -> bug !
+=> else data->precision = 0 ----------> SOLVED
 */

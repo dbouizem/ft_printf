@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 03:28:44 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/05 04:19:21 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/12 19:50:09 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	apply_precision(char **str, t_printf *data)
 	size_t	precision;
 	size_t	str_len;
 
-	if (!str || !*str || data->precision < 0)
+	if (!str || *str == NULL || data->precision < 0)
 		return ;
 	precision = (size_t)data->precision;
-	if (!*str)
+	if (**str == '\0')
 	{
 		new_str = ft_strdup("");
 		if (*str)

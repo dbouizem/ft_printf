@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 05:15:02 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/05 10:17:28 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/09 21:00:22 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,10 @@ void	handle_hex(int uppercase, t_printf *data)
 
 void	handle_hex(int uppercase, t_printf *data)
 {
-	char	*str;
-	char	*base;
+	unsigned int	n;
 
-	base = HEXLOW;
-	if (uppercase)
-		base = HEXUPP;
-	str = ft_ulltoa_base((uintmax_t)va_arg(data->args, unsigned int), base);
-	if (!str)
-	{
-		data->error = 1;
-		return ;
-	}
-	ft_print_str(str, data);
+	n = va_arg(data->args, unsigned int);
+	ft_print_hex((unsigned long)n, uppercase, data);
 }
 
 #endif

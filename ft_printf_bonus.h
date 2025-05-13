@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 02:21:43 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/03 23:02:46 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/12 23:27:34 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,18 @@
 # include "ft_printf.h"
 
 // Zone interdite (surrogates UTF-16)
+/*
+-- Correspond à une zone spéciale de code points réservée pour
+-- encoder les caractères au-delà de 0xFFFF dans UTF-16
+-- Les surrogates ne sont pas des caractères valides en eux-mêmes,
+-- ils servent uniquement à l’encodage. Leur présence isolée dans
+-- une chaîne est généralement une erreur ou un signe de corruption
+*/
 # define UCODE_S_MIN	0xD800
 # define UCODE_S_MAX	0xDFFF
 
 /* Unicode Ranges */
-# define UCODE_MAX			0x10FFFF	// 65536 – 1114111	😀, 🐍
+# define UCODE_MAX				0x10FFFF	// 65536 – 1114111	😀, 🐍
 # define ASCII_MAX				0x7F		// 0 – 127			A, B, C
 # define UTF8_2_BYTES_MAX		0x7FF		// 128 – 2047		é, ñ, Ω
 # define UTF8_3_BYTES_MAX		0xFFFF		// 2048 – 65535		你, أ

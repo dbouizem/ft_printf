@@ -6,14 +6,13 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 02:51:52 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/04 00:35:00 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/12 14:53:05 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 #ifdef BONUS
 # include "../ft_printf_bonus.h"
-#endif
 
 static char	*get_char_str(char c)
 {
@@ -25,8 +24,6 @@ static char	*get_char_str(char c)
 	str[0] = c;
 	return (str);
 }
-
-#ifdef BONUS
 
 static void	print_null_char(t_printf *data)
 {
@@ -85,16 +82,10 @@ void	handle_char(t_printf *data)
 
 void	handle_char(t_printf *data)
 {
-	char		*str;
+	char	c;
 
-	str = get_char_str((char)va_arg(data->args, int));
-	if (!str)
-	{
-		data->error = 1;
-		return ;
-	}
-	ft_print_str(str, data);
-	free(str);
+	c = (char)va_arg(data->args, int);
+	ft_print_char(c, data);
 }
 
 #endif

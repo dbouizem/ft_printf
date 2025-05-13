@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 01:21:38 by dbouizem          #+#    #+#             */
-/*   Updated: 2025/05/05 14:27:15 by dbouizem         ###   ########.fr       */
+/*   Updated: 2025/05/13 02:23:53 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>//Test
 # include <limits.h>//Test
 # include <stdint.h>//pour utiliser uintmax_t/intmax_t/uintptr_t
-# include <wchar.h>
+# include <wchar.h>//pour wchar_t
 # include <stddef.h>//ptrdiff_t
 
 # define DIGITS "0123456789"
