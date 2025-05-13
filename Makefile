@@ -6,12 +6,12 @@
 #    By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 17:17:29 by dbouizem          #+#    #+#              #
-#    Updated: 2025/05/13 02:23:37 by dbouizem         ###   ########.fr        #
+#    Updated: 2025/05/13 02:49:38 by dbouizem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-##TEST = program
+TEST = program
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
@@ -56,9 +56,9 @@ BONUS_SRCS = \
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
-##TEST_SRC = main.c
+TEST_SRC = main.c
 
-##TEST_OBJ = $(TEST_SRC:.c=.o)
+TEST_OBJ = $(TEST_SRC:.c=.o)
 
 all: $(NAME)
 
@@ -75,18 +75,18 @@ bonus: all $(BONUS_OBJS)
 	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 	@ranlib $(NAME)
 
-##$(TEST) : $(TEST_OBJ) $(NAME)
-##$(CC) $(CFLAGS) $(TEST_OBJ) -L. -lftprintf -o $(TEST)
+$(TEST) : $(TEST_OBJ) $(NAME)
+	$(CC) $(CFLAGS) $(TEST_OBJ) -L. -lftprintf -o $(TEST)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I. -I$(LIBFT_PATH) -c $< -o $@
 
 clean:
-	@rm -f $(OBJS) $(BONUS_OBJS)
+	@rm -f $(OBJS) $(BONUS_OBJS) $(TEST_OBJ)
 	@$(MAKE) -C $(LIBFT_PATH) clean
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(TEST)
 	@$(MAKE) -C $(LIBFT_PATH) fclean
 
 re: fclean all
