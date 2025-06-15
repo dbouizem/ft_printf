@@ -13,7 +13,6 @@
 #ifndef FT_PRINTF_BONUS_H
 # define FT_PRINTF_BONUS_H
 
-#define BONUS
 # include "ft_printf.h"
 
 // Zone interdite (surrogates UTF-16)
