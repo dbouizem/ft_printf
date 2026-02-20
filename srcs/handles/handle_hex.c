@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handle_hex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 02:25:35 by codex             #+#    #+#             */
-/*   Updated: 2026/02/20 02:25:35 by codex            ###   ########.fr       */
+/*   Created: 2025/02/06 05:15:02 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/09 21:00:22 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	run_cheker(void);
-void	run_cheker_bonus(void);
+#include "ft_printf.h"
 
-int	main(void)
+void	handle_hex(int uppercase, t_printf *data)
 {
-	run_cheker();
-	run_cheker_bonus();
-	return (0);
+	unsigned int	n;
+
+	n = va_arg(data->args, unsigned int);
+	ft_print_hex((unsigned long)n, uppercase, data);
 }

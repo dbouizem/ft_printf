@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strfill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 02:25:35 by codex             #+#    #+#             */
-/*   Updated: 2026/02/20 02:25:35 by codex            ###   ########.fr       */
+/*   Created: 2025/02/14 15:04:17 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/02 02:53:07 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	run_cheker(void);
-void	run_cheker_bonus(void);
+#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	main(void)
+char	*ft_strfill(size_t size, char c)
 {
-	run_cheker();
-	run_cheker_bonus();
-	return (0);
+	char	*buffer;
+
+	buffer = malloc((size + 1) * sizeof(char));
+	if (!buffer)
+		return (NULL);
+	ft_memset(buffer, c, size);
+	buffer[size] = '\0';
+	return (buffer);
 }

@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 02:25:35 by codex             #+#    #+#             */
-/*   Updated: 2026/02/20 02:25:35 by codex            ###   ########.fr       */
+/*   Created: 2025/02/06 05:04:14 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/09 20:16:08 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	run_cheker(void);
-void	run_cheker_bonus(void);
+#include "ft_printf.h"
 
-int	main(void)
+void	ft_print_hex(unsigned long n, int uppercase, t_printf *data)
 {
-	run_cheker();
-	run_cheker_bonus();
-	return (0);
+	const char	*base;
+	char		buffer[20];
+	int			i;
+
+	if (data->error)
+		return ;
+	i = sizeof(buffer) - 1;
+	buffer[i] = '\0';
+	if (uppercase)
+		base = HEXUPP;
+	else
+		base = HEXLOW;
+	if (n == 0)
+		buffer[--i] = '0';
+	while (n > 0 && i > 0)
+	{
+		buffer[--i] = base[n % 16];
+		n /= 16;
+	}
+	ft_print_str(&buffer[i], data);
 }

@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 02:25:35 by codex             #+#    #+#             */
-/*   Updated: 2026/02/20 02:25:35 by codex            ###   ########.fr       */
+/*   Created: 2025/02/06 04:53:39 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/02/09 08:01:36 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	run_cheker(void);
-void	run_cheker_bonus(void);
+#include "ft_printf.h"
 
-int	main(void)
+void	ft_print_char(char c, t_printf *data)
 {
-	run_cheker();
-	run_cheker_bonus();
-	return (0);
+	if (data->error)
+		return ;
+	if (write(1, &c, 1) == -1)
+	{
+		data->error = 1;
+		return ;
+	}
+	data->total++;
 }

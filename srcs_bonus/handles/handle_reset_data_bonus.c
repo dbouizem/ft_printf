@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handle_reset_data_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 02:25:35 by codex             #+#    #+#             */
-/*   Updated: 2026/02/20 02:25:35 by codex            ###   ########.fr       */
+/*   Created: 2025/04/12 00:22:28 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/13 03:33:04 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	run_cheker(void);
-void	run_cheker_bonus(void);
+#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	main(void)
+void	handle_reset_printf_data(t_printf *data)
 {
-	run_cheker();
-	run_cheker_bonus();
-	return (0);
+	data->minus = 0;
+	data->zero = 0;
+	data->hash = 0;
+	data->space = 0;
+	data->plus = 0;
+	data->width = 0;
+	data->precision = -1;
+	data->length = 0;
 }

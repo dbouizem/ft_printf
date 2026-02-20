@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handle_pointer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 02:25:35 by codex             #+#    #+#             */
-/*   Updated: 2026/02/20 02:25:35 by codex            ###   ########.fr       */
+/*   Created: 2025/02/06 04:03:41 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/09 20:24:11 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	run_cheker(void);
-void	run_cheker_bonus(void);
+#include "ft_printf.h"
 
-int	main(void)
+void	handle_pointer(t_printf *data)
 {
-	run_cheker();
-	run_cheker_bonus();
-	return (0);
+	uintptr_t	ptr;
+
+	ptr = (uintptr_t)va_arg(data->args, void *);
+	if (ptr == 0)
+	{
+		ft_print_str("(nil)", data);
+		return ;
+	}
+	ft_print_str("0x", data);
+	ft_print_hex(ptr, 0, data);
 }

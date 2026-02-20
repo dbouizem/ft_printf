@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handle_uint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 02:25:35 by codex             #+#    #+#             */
-/*   Updated: 2026/02/20 02:25:35 by codex            ###   ########.fr       */
+/*   Created: 2025/02/09 06:24:09 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/09 20:49:52 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	run_cheker(void);
-void	run_cheker_bonus(void);
+#include "ft_printf.h"
 
-int	main(void)
+void	handle_uint(t_printf *data)
 {
-	run_cheker();
-	run_cheker_bonus();
-	return (0);
+	char	*str;
+
+	str = ft_ulltoa_base((uintmax_t)va_arg(data->args, unsigned int), DIGITS);
+	if (!str)
+	{
+		data->error = 1;
+		return ;
+	}
+	ft_print_str(str, data);
+	free(str);
 }

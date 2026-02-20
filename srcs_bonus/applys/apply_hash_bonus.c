@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   apply_hash_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 02:25:35 by codex             #+#    #+#             */
-/*   Updated: 2026/02/20 02:25:35 by codex            ###   ########.fr       */
+/*   Created: 2025/02/16 03:51:10 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/13 03:30:47 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	run_cheker(void);
-void	run_cheker_bonus(void);
+#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	main(void)
+void	apply_hash(char **str, t_printf *data, int uppercase)
 {
-	run_cheker();
-	run_cheker_bonus();
-	return (0);
+	char	*prefixe;
+	char	*result;
+
+	if (!str || !*str || !data->hash || (**str == '0' && **str != '\0'))
+		return ;
+	prefixe = "0x";
+	if (uppercase)
+		prefixe = "0X";
+	result = ft_strjoin(prefixe, *str);
+	if (!result)
+	{
+		data->error = 1;
+		return ;
+	}
+	free(*str);
+	*str = result;
 }

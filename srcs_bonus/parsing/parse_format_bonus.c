@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_format_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 02:25:35 by codex             #+#    #+#             */
-/*   Updated: 2026/02/20 02:25:35 by codex            ###   ########.fr       */
+/*   Created: 2026/02/19 00:00:00 by codex             #+#    #+#             */
+/*   Updated: 2026/02/19 00:00:00 by codex            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	run_cheker(void);
-void	run_cheker_bonus(void);
+#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	main(void)
+void	parse_format(const char **format, t_printf *data)
 {
-	run_cheker();
-	run_cheker_bonus();
-	return (0);
+	parse_flags(format, data);
+	parse_width_precision(format, data);
+	parse_length(format, data);
+	if (!ft_strchr("cspdiuxX%", **format))
+		handle_invalid_specifier(format, data);
+	else
+	{
+		handle_dispatch_format(**format, data);
+		(*format)++;
+	}
+	handle_reset_printf_data(data);
 }

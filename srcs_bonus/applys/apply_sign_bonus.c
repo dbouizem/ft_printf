@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   apply_sign_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 02:25:35 by codex             #+#    #+#             */
-/*   Updated: 2026/02/20 02:25:35 by codex            ###   ########.fr       */
+/*   Created: 2025/02/13 06:23:01 by dbouizem          #+#    #+#             */
+/*   Updated: 2025/05/13 03:31:22 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	run_cheker(void);
-void	run_cheker_bonus(void);
+#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	main(void)
+void	apply_sign(char **str, t_printf *data, intmax_t num)
 {
-	run_cheker();
-	run_cheker_bonus();
-	return (0);
+	char	*sign;
+	char	*new;
+
+	sign = NULL;
+	if (num < 0)
+		sign = "-";
+	else if (data->plus)
+		sign = "+";
+	else if (data->space)
+		sign = " ";
+	else
+		return ;
+	new = ft_strjoin(sign, *str);
+	if (!new)
+	{
+		data->error = 1;
+		return ;
+	}
+	free(*str);
+	*str = new;
 }
